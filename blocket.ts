@@ -24,6 +24,7 @@ fetch('https://api.blocket.se/search_bff/v1/content?cg=1020&lim=40&me=30&mys=200
             gearBox : json.data[0].parameter_groups[0].parameters[1].value
         }
         console.log(carInfo)
+
     })
 
 /*
