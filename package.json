@@ -1,0 +1,25 @@
+{
+  "name": "blocket-monitor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node blocket.js",
+    "dev" : "nodemon blocket.ts",
+    "build" : "tsc -p ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "got": "^11.8.1",
+    "himalaya": "^1.1.0",
+    "node-fetch": "^2.6.1",
+    "xml2json-light": "^1.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "request": "^2.88.2"
+  }
+}

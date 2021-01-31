@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs"
+  },
+  "typings": "dist/index.d.ts",
+  "moduleResolution" : "node"
+}
