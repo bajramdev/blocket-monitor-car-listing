@@ -1,3 +1,4 @@
+var clc = require("cli-color");
 
 const readline = require('readline')
 let cheerio = require('cheerio');
@@ -10,6 +11,10 @@ const rl = readline.createInterface({
     output: process.stdout
 })
 
+
+
+//Reads userinput for webhook
+
 const userInputWebhook = () => {
     return new Promise((resolve, reject) => {
         rl.question('Insert your Discord webhook: ', (answer) => {
@@ -20,6 +25,8 @@ const userInputWebhook = () => {
     })
 }
 
+//User input for Listing
+
 const userInputListingURL = () => {
     return new Promise((resolve, reject) => {
         rl.question('Insert the listing URL: ', (answer) => {
@@ -28,9 +35,22 @@ const userInputListingURL = () => {
     })
 }
 
-const main = async () => {
 
+
+async function DiscordWebhook(){
     webhook = await userInputWebhook()
+    console.log(clc.magentaBright("Successfully submitted Webhook!"));
+    process.stdout.write(clc.erase.screen);
+    process.stdout.write(clc.reset);
+
+    return webhook;
+}
+
+
+//Scrape the Listing URL
+
+async function scrapeURL(){
+
 
     urlLink = await userInputListingURL()
 
@@ -38,55 +58,49 @@ const main = async () => {
 
     //Fetch BearerToken
 
-    const response = await fetch(urlLink)
+            const response = await fetch(urlLink)
 
-    const html = await response.text();
+            const html = await response.text();
 
-    const $ = cheerio.load(html)
+            const $ = cheerio.load(html)
 
-    let regex = /([a-z0-9]{40})/
+            let regex = /([a-z0-9]{40})/
 
-    let token = $('#__NEXT_DATA__').html().match(regex)[0]
-
-    console.log(token)
-
-    let url = urlLink.split("bilar?")[1]
-
-    let api = `https://api.blocket.se/search_bff/v1/content?${url}&st=s&include=all&gl=3&include=extend_with_shipping`
+            let token = $('#__NEXT_DATA__').html().match(regex)[0]
 
 
-    let something =  await fetch(api, {
+            let url = urlLink.split("bilar?")[1]
+
+            let api = `https://api.blocket.se/search_bff/v1/content?${url}&st=s&include=all&gl=3&include=extend_with_shipping`
+
+            console.log("inside fun" , api)
+            console.log("inside fun" , token)
+
+            return  {api , token}
+
+}
+
+//Scrapeing webstie
+async function FetchingURL() {
+
+
+    let {api, token} = await scrapeURL()
+
+    console.log(typeof api)
+    let something = await fetch(api, {
         method: 'GET',
         headers: {'Authorization': `Bearer ${token}`}
     })
 
     let body = await something.json();
 
-
-    try {
-
-    let carInfo = {
-
-        city: body.data[0].location[1].name,
-        productLink: body.data[0].share_url,
-        name: body.data[0].subject,
-        price: body.data[0].price?.value,
-        image: body.data[0].images[0]?.url,
-        description: body.data[0].body,
-        mileage: body.data[0].parameter_groups[0]?.parameters[2]?.value,
-        modelYear: body.data[0].parameter_groups[0]?.parameters[3]?.value,
-        horsePower: body.data[0].parameter_groups[1]?.parameters[1]?.value,
-        gearBox: body.data[0].parameter_groups[0]?.parameters[1]?.value
-    }
-        console.log(carInfo)
-    } catch (e) {
-        console.log("error is " , e)
-    }
-
-
-
+    console.log(body)
 }
 
+//Execution
+async function Execution() {
+    await DiscordWebhook();
+    await FetchingURL();
+}
 
-main();
-
+Execution();

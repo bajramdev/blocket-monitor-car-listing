@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.5",
+    "cli-color": "^2.0.0",
     "discord-webhook-node": "^1.1.8",
     "got": "^11.8.1",
     "himalaya": "^1.1.0",

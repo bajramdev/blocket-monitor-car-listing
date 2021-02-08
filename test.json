@@ -1,0 +1,42 @@
+Response {
+  size: 0,
+  timeout: 0,
+[Symbol(Body internals)]: {
+body: Gunzip {
+_writeState: [Uint32Array],
+_readableState: [ReadableState],
+readable: true,
+_events: [Object: null prototype],
+_eventsCount: 6,
+_maxListeners: undefined,
+_writableState: [WritableState],
+writable: true,
+allowHalfOpen: true,
+_transformState: [Object],
+_hadError: false,
+bytesWritten: 0,
+_handle: [Zlib],
+_outBuffer: <Buffer 3c 21 44 4f 43 54 59 50 45 20 68 74 6d 6c 3e 3c 68 74 6d 6c 20 6c 61 6e 67 3d 22 73 76 22 20 73 74 79 6c 65 3d 22 64 69 73 70 6c 61 79 3a 66 6c 65 78 ... 16334 more bytes>,
+_outOffset: 0,
+_chunkSize: 16384,
+_defaultFlushFlag: 2,
+_finishFlushFlag: 2,
+_defaultFullFlushFlag: 3,
+_info: undefined,
+_level: -1,
+_strategy: 0,
+[Symbol(kCapture)]: false
+},
+disturbed: false,
+error: null
+},
+[Symbol(Response internals)]: {
+url: 'https://www.blocket.se/annonser/jamtland/fordon/bilar?cg=1020&r=3',
+status: 200,
+statusText: 'OK',
+headers: Headers { [Symbol(map)]: [Object: null prototype] },
+counter: 0
+}
+}
+
+Process finished with exit code 0
