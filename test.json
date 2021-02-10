@@ -1,42 +1,30 @@
-Response {
-  size: 0,
-  timeout: 0,
-[Symbol(Body internals)]: {
-body: Gunzip {
-_writeState: [Uint32Array],
-_readableState: [ReadableState],
-readable: true,
-_events: [Object: null prototype],
-_eventsCount: 6,
-_maxListeners: undefined,
-_writableState: [WritableState],
-writable: true,
-allowHalfOpen: true,
-_transformState: [Object],
-_hadError: false,
-bytesWritten: 0,
-_handle: [Zlib],
-_outBuffer: <Buffer 3c 21 44 4f 43 54 59 50 45 20 68 74 6d 6c 3e 3c 68 74 6d 6c 20 6c 61 6e 67 3d 22 73 76 22 20 73 74 79 6c 65 3d 22 64 69 73 70 6c 61 79 3a 66 6c 65 78 ... 16334 more bytes>,
-_outOffset: 0,
-_chunkSize: 16384,
-_defaultFlushFlag: 2,
-_finishFlushFlag: 2,
-_defaultFullFlushFlag: 3,
-_info: undefined,
-_level: -1,
-_strategy: 0,
-[Symbol(kCapture)]: false
-},
-disturbed: false,
-error: null
-},
-[Symbol(Response internals)]: {
-url: 'https://www.blocket.se/annonser/jamtland/fordon/bilar?cg=1020&r=3',
-status: 200,
-statusText: 'OK',
-headers: Headers { [Symbol(map)]: [Object: null prototype] },
-counter: 0
-}
-}
+First
 
-Process finished with exit code 0
+Ford Focus 1.6 TDC Nyservad 0 Kontant
+
+Hyundai Santa Fe 2.4 4WD 145hk Bes Tom 2022 mars
+Skoda Superb 1,8 TSI DSG KOMBi ELEGANCE AUT DRAG
+Volkswagen Bora 1,6
+Volkswagen Polo 1.4
+Tesla Model X P90D >Ludicrous
+Audi A3 Sedan 1.5 TFSI 150HK S-Tr Sport
+Audi A5 Sportback 2.0 TDI 190 HK quattro S-Tronic
+
+
+
+Second // when it finds new stock
+
+Volvo S90 D4 Navi Momentum, Advanced Edition 190hk
+Seat Leon 1.2 TSISTYLE5T81 DB8 6G
+Citroën Grand C4 Picasso 120hk 7-sits Panorama Navi B-Kamera
+Audi A3 Sportback 2.0 TDI 140hk Attraction Nybesiktigad
+
+Ford Focus 1.6 TDC Nyservad 0 Kontant
+
+Hyundai Santa Fe 2.4 4WD 145hk Bes Tom 2022 mars
+Skoda Superb 1,8 TSI DSG KOMBi ELEGANCE AUT DRAG
+Volkswagen Bora 1,6
+Volkswagen Polo 1.4
+Tesla Model X P90D >Ludicrous
+Audi A3 Sedan 1.5 TFSI 150HK S-Tr Sport
+Audi A5 Sportback 2.0 TDI 190 HK quattro S-Tronic
