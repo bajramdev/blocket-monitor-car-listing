@@ -7,6 +7,7 @@ const { Webhook , MessageBuilder} = require('discord-webhook-node');
 let emptArray = []
 let urlLink, webhook;
 let latestProductIds = []
+let arr2 = []
 let loaded = false;
 
 const rl = readline.createInterface({
@@ -106,11 +107,20 @@ async function storeData(){
 
         if (newProducts.length > 0){
 
-            for (let prod of newProducts){
+            if (arr2[0] !== newProducts[0]) { //position has been changed
 
-                console.log(prod.ad_id)
-                // send webhook(prod)
+                const found = arr2.findIndex(element => newProducts[0] === element) //first index
+                let changed = arr2.slice(0, found);
+
+                for (let prod of changed){
+
+                    console.log(typeof prod.ad_id)
+                    // send webhook(prod)
+                }
+                arr2 = newProducts
             }
+
+
         }
     }    } while (products.length - 1 !== products.length )
 }

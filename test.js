@@ -1,15 +1,12 @@
-let arr = [1,2,3,4,5,6,7,8]
+let arr = [1,2,3,4,5,6]
+let arr2 = []
 
-let firstSpot = [0]
-let firstEl = arr[0]
+    if (arr2[0] !== arr[0]) { //position has been changed
 
-for (let el of arr){
+        const found = arr2.findIndex(element => arr[0] === element) //first index
+        let changed = arr2.slice(0, found);
+        console.log(changed)
 
-    if (firstEl !== arr[firstSpot]){
-
+        arr2 = arr
     }
 
-
-
-}
-console.log(arr[firstSpot])
