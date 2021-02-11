@@ -2,8 +2,10 @@
 const readline = require('readline')
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
-
 const { Webhook , MessageBuilder} = require('discord-webhook-node');
+
+const hook = new Webhook("https://discord.com/api/webhooks/809345164220956673/gLE6_KktB3vRwGlaWb7eHPWg6f6DAmch23cILzaXCrWw-Q250AVTUURMb2aHm05lq7Ue");
+
 let emptArray = []
 let urlLink, webhook;
 let latestProductIds = []
@@ -73,7 +75,7 @@ async function FetchingData() {
 
     // let {api, token} = await scrapeURL()
 
-    let data = await fetch("https://api.blocket.se/search_bff/v1/content?cg=1020&lim=40&st=s&include=all&gl=3&include=extend_with_shipping", {
+    let data = await fetch("https://api.blocket.se/search_bff/v1/content?cg=1020&lim=40&r=23&st=s&include=all&gl=3&include=extend_with_shipping", {
         method: 'GET',
         headers: {'Authorization': `Bearer 09e1ce5f10adb0311e6ee91d9cc00c0bb982158d`}
     })
@@ -89,7 +91,7 @@ async function FetchingData() {
 // https://api.blocket.se/search_bff/v1/content?cg=1020&lim=40&st=s&include=all&gl=3&include=extend_with_shipping ALL
 
 async function storeData(){
-    do {
+
 
 
         var products = await FetchingData();
@@ -107,13 +109,15 @@ async function storeData(){
         if (newProducts.length > 0){
 
             for (let prod of newProducts){
+            //    sendWebhook(prod)
 
-                console.log(prod.ad_id)
-                // send webhook(prod)
+                console.log(prod.subject)
             }
         }
-    }    } while (products.length - 1 !== products.length )
+    }
 }
+
+setInterval(storeData, 2000)
 
 function isEqualArrays(array1, array2){
 
@@ -138,8 +142,45 @@ function isEqualArrays(array1, array2){
     return true
 }
 
+function sendWebhook(obj){
+
+
+    try {
+        const embed = new MessageBuilder()
+            .setTitle(`${obj.subject}`)
+            .setURL(`${obj.share_url}`)
+            .addField('Beskrivning', `${obj.body}`)
+            .addField('Pris', `${obj.price.value} Kr`, true)
+            .addField('Miltal', `${obj.parameter_groups[0].parameters[2].value} Mil`, true)
+            .addField('Modelår', `${obj.parameter_groups[0].parameters[3].value}`, true)
+            .addField('Hästkrafter', `${obj.parameter_groups[1].parameters[1].value} hK`, true)
+            .addField('Växellåda', `${obj.parameter_groups[0].parameters[1].value}`, true)
+            .addField('Stad', `${obj.location[1].name}`, true)
+            .setColor('#00b0f4')
+            .setImage(`${obj.images[0].url}`)
+            .setTimestamp();
+        hook.send(embed);
+    } catch (e) {
+        console.log("error is " , e)
+    }
+}
+
+
 
 storeData()
 
 
 
+/**
+ * city: body.data[0]?.location[1]?.name,
+ productLink: body.data[0]?.share_url,
+ name: body.data[0]?.subject,
+ price: body.data[0]?.price?.value,
+ image: body.data[0]?.images[0]?.url,
+ description: body.data[0]?.body,
+ mileage: body.data[0]?.parameter_groups[0]?.parameters[2]?.value,
+ modelYear: body.data[0]?.parameter_groups[0]?.parameters[3]?.value,
+ horsePower: body.data[0]?.parameter_groups[1]?.parameters[1]?.value,
+ gearBox: body.data[0]?.parameter_groups[0]?.parameters[1]?.value
+ }
+*/
